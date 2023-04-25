@@ -3,9 +3,9 @@
 {
   'use strict';
 
-const select = {
-  templateOf: {
-    menuProduct: "#template-menu-product",
+  const select = {
+    templateOf: {
+      menuProduct: "#template-menu-product",
     },
     containerOf: {
       menu: '#product-list',
@@ -51,18 +51,27 @@ const select = {
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
-  class Product{
-    constructor(){
+  class Product {
+    constructor() {
       const thisProduct = this;
-      console.log ('new Product:', thisProduct);
+      console.log('new Product:', thisProduct);
     }
   }
   const app = {
-    initMenu: function (){
-    const testProduct = new Product();
-    console.log('testProduct:', testProduct);
-  },
-    init: function(){
+    initMenu: function () {
+      const thisApp = this;
+      console.log('thisApp.data:'.thisApp.data);
+      const testProduct = new Product();
+      console.log('testProduct:', testProduct);
+    },
+    
+    initData: function() {
+      const thisApp = this;
+  
+      thisApp.data = dataSource;
+    },
+
+    init: function () {
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
@@ -70,6 +79,7 @@ const select = {
       console.log('settings:', settings);
       console.log('templates:', templates);
 
+      thisApp.initData();
       thisApp.initMenu();
     },
   };
@@ -77,3 +87,4 @@ const select = {
   app.init();
 
 }
+
