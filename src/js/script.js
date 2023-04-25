@@ -60,7 +60,7 @@
   const app = {
     initMenu: function () {
       const thisApp = this;
-      console.log('thisApp.data:'.thisApp.data);
+      console.log('thisApp.data:', thisApp.data);
       const testProduct = new Product();
       console.log('testProduct:', testProduct);
     },
