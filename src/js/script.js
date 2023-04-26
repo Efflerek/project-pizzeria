@@ -88,17 +88,11 @@
         /* find active product (product with class active) */
         const activeProduct = document.querySelectorAll(select.all.menuProductsActive);
         /* if there is active product and it's not thisProduct.element, remove class active (classNames.menuProduct.wrapperActive) */
-        function removeActiveClass(activeProduct) {
-          console.log(activeProduct);
-          if (activeProduct !== null && activeProduct !== thisProduct.element) {
+          if (activeProduct && activeProduct !== thisProduct.element) {
             activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
           }
           /* toggle active class on thisProduct.element (classNames.menuProduct.wrapperActive) */
-          else if (activeProduct == thisProduct.element) {
-            activeProduct.classList.toggle(classNames.menuProduct.wrapperActive);
-          }
-        }
-        removeActiveClass(activeProduct);
+            thisProduct.classList.toggle(classNames.menuProduct.wrapperActive);
       }); 
     }
   }
