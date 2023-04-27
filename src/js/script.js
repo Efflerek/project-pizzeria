@@ -230,6 +230,7 @@
 
         thisApp.initData();
         thisApp.initMenu();
+        thisApp.initCart();
       },
 
     };
