@@ -103,7 +103,7 @@
         const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
         /* if there is active product and it's not thisProduct.element, remove class active (classNames.menuProduct.wrapperActive) */
         for (let activeProduct of activeProducts) {
-          if (activeProduct && activeProduct !== thisProduct.element) {
+          if (activeProduct !==null && activeProduct !== thisProduct.element) {
             activeProduct.classList.remove('active');
           }
         }
@@ -115,20 +115,23 @@
     initOrderForm() {
       const thisProduct = this;
       console.log('initOrderForm');
-  
+  /*Put Listening on Sumbit button in Form, stop from default action */
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
+  /*Run processOrder method on thisProduct */
         thisProduct.processOrder();
       });
-  
+   /*Put Listening on every input in the form*/
       for (let input of thisProduct.formInputs) {
         input.addEventListener('change', function () {
           thisProduct.processOrder();
+  /*Run processOrder method on thisProduct */
         });
       }
-  
+  /*Put Listening on button in the cart, stop from default action */
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
+  /*Run processOrder method on thisProduct */
         thisProduct.processOrder();
       });
     }
