@@ -100,12 +100,11 @@
         /* prevent default action for event */
         event.preventDefault();
         /* find active product (product with class active) */
-        const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
+        const activeProduct = document.querySelectorAll('.product.active');
         /* if there is active product and it's not thisProduct.element, remove class active (classNames.menuProduct.wrapperActive) */
-        for (let activeProduct of activeProducts) {
           if (activeProduct !==null && activeProduct !== thisProduct.element) {
             activeProduct.classList.remove('active');
-          }
+          
         }
         /* toggle active class on thisProduct.element (classNames.menuProduct.wrapperActive) */
         thisProduct.element.classList.toggle('active');
@@ -162,7 +161,7 @@
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
-  };
+  }
 
 
 const app = {
