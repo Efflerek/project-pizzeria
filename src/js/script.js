@@ -100,7 +100,7 @@
         /* prevent default action for event */
         event.preventDefault();
         /* find active product (product with class active) */
-        const activeProduct = document.querySelectorAll('.product.active');
+        const activeProduct = document.querySelector('.product.active');
         /* if there is active product and it's not thisProduct.element, remove class active (classNames.menuProduct.wrapperActive) */
           if (activeProduct !==null && activeProduct !== thisProduct.element) {
             activeProduct.classList.remove('active');
