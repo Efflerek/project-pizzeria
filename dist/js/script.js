@@ -203,32 +203,32 @@
       const thisWidget = this;
       console.log('AmountWidget', thisWidget);
       console.log('constructor arguments:', element);
-  
+
       thisWidget.getElements(element);
       // Fix the method call by removing "thisWidget" before "this.input.value"
       thisWidget.setValue(thisWidget.input.value);
-  
+
       // Call the initActions method to initialize event listeners
       thisWidget.initActions();
     }
-  
+
     getElements(element) {
       const thisWidget = this;
-  
+
       thisWidget.element = element;
       // Add missing import statement for "select" variable
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
-  
+
     setValue(value) {
       const thisWidget = this;
-  
+
       const newValue = parseInt(value);
-  
+
       /* TODO: Add validation */
-  
+
       // Fix the assignment operator by changing "==" to "="
       thisWidget.value = newValue;
       // Fix the method call by adding "thisWidget." before "value"
@@ -238,22 +238,27 @@
       if (thisWidget.value != newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
       }
-  
+      if (newValue >= settings.amountWidget.defaultMin) {
+        thisWidget.value = newValue;
+      };
+      if (newValue <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+      };
     }
-  
+
     initActions() {
       const thisWidget = this;
-      thisWidget.input.addEventListener('change', function() {
+      thisWidget.input.addEventListener('change', function () {
         thisWidget.setValue(thisWidget.input.value);
       });
-      thisWidget.linkDecrease.addEventListener('click', function(event) {
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
         event.preventDefault();
         // Add a check to prevent the value from going below zero
         if (thisWidget.value > 0) {
           thisWidget.setValue(thisWidget.value - 1);
         }
       });
-      thisWidget.linkIncrease.addEventListener('click', function(event) {
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
