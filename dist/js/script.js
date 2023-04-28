@@ -224,26 +224,35 @@
 
     setValue(value) {
       const thisWidget = this;
-
+    
       const newValue = parseInt(value);
-
+    
       /* TODO: Add validation */
-
+    
       // Fix the assignment operator by changing "==" to "="
       thisWidget.value = newValue;
+    
       // Fix the method call by adding "thisWidget." before "value"
       thisWidget.input.value = thisWidget.value;
+    
       /* TODO: Add validation */
+    
       // Fix the conditional statement by changing "!=="" to "!="
       if (thisWidget.value != newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
       }
-      if (newValue >= settings.amountWidget.defaultMin) {
+    
+      // Add validation to ensure the value is within the min and max limits
+      if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
         thisWidget.value = newValue;
-      };
-      if (newValue <= settings.amountWidget.defaultMax) {
-        thisWidget.value = newValue;
-      };
+      } else if (newValue <= settings.amountWidget.defaultMin) {
+        thisWidget.value = settings.amountWidget.defaultMin;
+      } else if (newValue >= settings.amountWidget.defaultMax) {
+        thisWidget.value = settings.amountWidget.defaultMax;
+      }
+    
+      // Update the input value to reflect any changes due to validation
+      thisWidget.input.value = thisWidget.value;
     }
 
     initActions() {
