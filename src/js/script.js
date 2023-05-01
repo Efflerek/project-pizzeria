@@ -58,6 +58,7 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
+    
 
       thisProduct.renderInMenu();
       thisProduct.getElements();
@@ -187,13 +188,17 @@
           }
         }
       }
-
+      //multiply price by amount //
+      price *=thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', (event) =>{
+      thisProduct.processOrder()
+      });
     }
 
   }
@@ -203,7 +208,6 @@
       const thisWidget = this;
       console.log('AmountWidget', thisWidget);
       console.log('constructor arguments:', element);
-
       thisWidget.getElements(element);
       // Fix the method call by removing "thisWidget" before "this.input.value"
       thisWidget.setValue(thisWidget.input.value);
@@ -224,24 +228,24 @@
 
     setValue(value) {
       const thisWidget = this;
-    
+
       const newValue = parseInt(value);
-    
+
       /* TODO: Add validation */
-    
+
       // Fix the assignment operator by changing "==" to "="
       thisWidget.value = newValue;
-    
+
       // Fix the method call by adding "thisWidget." before "value"
       thisWidget.input.value = thisWidget.value;
-    
+
       /* TODO: Add validation */
-    
+
       // Fix the conditional statement by changing "!=="" to "!="
       if (thisWidget.value != newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
       }
-    
+
       // Add validation to ensure the value is within the min and max limits
       if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
         thisWidget.value = newValue;
@@ -250,7 +254,7 @@
       } else if (newValue >= settings.amountWidget.defaultMax) {
         thisWidget.value = settings.amountWidget.defaultMax;
       }
-    
+
       // Update the input value to reflect any changes due to validation
       thisWidget.input.value = thisWidget.value;
     }
@@ -271,6 +275,11 @@
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
+    }
+    announce() {
+      const thisWidget = this;
+      const event = new Event('updated')
+      thisWidget.element.dispatchEvent(event);
     }
   }
 
