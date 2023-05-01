@@ -1,4 +1,4 @@
-/* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
+/* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-varst
 
 {
   'use strict';
@@ -188,6 +188,7 @@
           }
         }
       }
+      thisProduct.priceSingle = price;
       //multiply price by amount //
       price *=thisProduct.amountWidget.value;
       // update calculated price in the HTML
