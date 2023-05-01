@@ -64,7 +64,7 @@
     <li>
       <div class="widget-amount"> <!-- widget-amount -->
         <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
-        <input class="amount" type="text" value="{{ amount }}">
+        <input class="amount" type="text" value="${settings.amountWidget.defaultValue}">
         <a class="btn-quantity btn-quantity--lt" href="#more"><i class="fas fa-plus"></i></a>
       </div>
       <div class="cart__product">
@@ -146,7 +146,7 @@
                 <div class="widget-amount"> <!-- widget-amount -->
                   <h3 class="product__params-title">Select quantity</h3>
                   <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                  <input type="text" class="amount" value="${settings.amountWidget.defaultValue}">
+                  <input class="amount" type="text">
                   <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
                 </div>
                 <p class="product__total-price">
