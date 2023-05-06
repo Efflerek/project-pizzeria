@@ -103,12 +103,11 @@
       /*console.log('new Product:', thisProduct);*/
     }
 
-    renderInMenu() {
+    renderInMenu(){
       const thisProduct = this;
 
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
-
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       /* find menu container */
@@ -152,7 +151,7 @@
     initOrderForm() {
       const thisProduct = this;
       /*console.log('initOrderForm');*/
-      /*Put Listening on Sumbit button in Form, stop from default action */
+      /*Put Listening on Submit button in Form, stop from default action */
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
         /*Run processOrder method on thisProduct */
@@ -171,7 +170,6 @@
         thisProduct.addToCart();
       });
     }
-
 
     processOrder() {
       const thisProduct = this;
@@ -237,10 +235,64 @@
     }
     addtoCart() {
       const thisProduct = this;
-      app.cart.add(thisProduct);
+      app.cart.add(thisProduct.prepareCartProduct());
     }
 
-  }
+    prepareCartProduct() {
+      const thisProduct = this;
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        params: thisProduct.prepareCartProductParams()
+      };
+      return productSummary;
+    }
+    prepareCartProduct(){
+      const thisProduct = this;
+
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        params: thisProduct.prepareCartProductParams()
+      };
+      return productSummary;
+    }
+
+    prepareCartProductParams(){
+      const thisProduct = this;
+          
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      
+      const params = {};
+      
+      for(let paramId in thisProduct.data.params) {
+        
+        const param = thisProduct.data.params[paramId];
+        params[paramId] = {
+          label: param.label,
+          options: {},
+        };
+        
+        for(let optionId in param.options) {
+          
+          const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+                
+          if(optionSelected) { 
+            // option is selected!
+            params[paramId].options[optionId] = option.label;
+          }
+        }  
+      }
+      return params;
+    }
+    }
 
   class AmountWidget {
     constructor(element) {
@@ -329,16 +381,21 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
-    add(menuProduct) {
-      // const thisCart = this;
-      console.log ('adding product', menuProduct)
+    add(menuProduct){
+      const thisCart = this;
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
+
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      thisCart.update();
     }
   }
 
     const app = {
       initMenu: function () {
         const thisApp = this;
-        console.log('thisApp.data:', thisApp.data);
+        console.log('thisApp.data:', .data);
         for (let productData in thisApp.data.products) {
           new Product(productData, thisApp.data.products[productData]);
         }
@@ -358,12 +415,7 @@
 
       init: function () {
         const thisApp = this;
-        console.log('*** App starting ***');
-        console.log('thisApp:', thisApp);
-        console.log('classNames:', classNames);
-        console.log('settings:', settings);
-        console.log('templates:', templates);
-
+       
         thisApp.initData();
         thisApp.initMenu();
         thisApp.initCart();
@@ -372,4 +424,5 @@
     };
 
   app.init();
+  app.initCart()
   }
