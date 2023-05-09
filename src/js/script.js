@@ -384,6 +384,7 @@
       thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice)
       thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee)
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice)
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form)
     }
 
     initActions() {
@@ -397,8 +398,8 @@
       thisCart.dom.productList.addEventListener('remove', function(){
         thisCart.remove(event.detail.cartProduct);
       });
-      thisCart.dom.form.addEventListener('submit', function(cb){
-        cb.preventDefault();
+      thisCart.dom.form.addEventListener('submit', function(callback){
+        callback.preventDefault();
         thisCart.sendOrder();
       });
     }
@@ -415,6 +416,8 @@
         deliveryFee: thisCart.deliveryFee,
         products: [],
       };
+      console.log('payload', payload)
+
       for(let prod of thisCart.products) {
         payload.products.push(prod.getData());
       }
@@ -576,25 +579,25 @@
       
     },
 
-    initData: function () {
+    initData: function(){
       const thisApp = this;
-
+  
       thisApp.data = {};
       const url = settings.db.url + '/' + settings.db.products;
       fetch(url)
-      .then(function(rawResponse){
-        return rawResponse.json();
-      })
-      .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
 
-        /* save parsedResponse as thisApp.data.products */
-        thisApp.data.products = parsedResponse;
-        /* execute initMenu method */
-        thisApp.initMenu();
-      });
+          /* save parsedResponse ass thisApp.data.products */
+          thisApp.data.products = parsedResponse;
+          /* execute initMenu method */
+          thisApp.initMenu();
+        });
 
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
     initCart: function () {
