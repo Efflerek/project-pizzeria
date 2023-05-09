@@ -543,7 +543,7 @@
 
       thisApp.data = {};
       const url = settings.db.url + '/' + settings.db.products;
-      fetch(urls)
+      fetch(url)
       .then(function(rawResponse){
         return rawResponse.json();
       })
