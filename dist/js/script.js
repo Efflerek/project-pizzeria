@@ -551,7 +551,7 @@
       .then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
 
-        /* save parsedResponse ass thisApp.data.products */
+        /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
         /* execute initMenu method */
         thisApp.initMenu();
@@ -566,20 +566,22 @@
       thisApp.cart = new Cart(cartElem);
     },
 
-    init: function () {
+    init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
-
+      
       thisApp.initData();
-      thisApp.initMenu();
-      thisApp.initCart();
+      
     },
 
-  };
+    initCart: function(){
+      const thisApp = this;
 
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+  };
+  
   app.init();
+  app.initCart();
+  
 }
