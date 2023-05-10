@@ -576,19 +576,19 @@
         new Product(productData, thisApp.data.products[productData]);
       }
     },
-
+  
     initData: function () {
       const thisApp = this;
-
+  
       thisApp.data = {};
-      const url = settings.db.url + '/' + settings.db.products;
+      const url = settings.db.url + '/' + settings.db.orders;
       fetch(url)
         .then(function (rawResponse) {
           return rawResponse.json();
         })
         .then(function (parsedResponse) {
           console.log('parsedResponse', parsedResponse);
-
+  
           /* save parsedResponse as thisApp.data.products */
           thisApp.data.products = parsedResponse;
           /* execute initMenu method */
@@ -598,22 +598,21 @@
           console.error('Error:', error);
         });
     },
-
+  
     init: function () {
       const thisApp = this;
-
+  
       thisApp.initData();
-
     },
-
+  
     initCart: function () {
       const thisApp = this;
-
+  
       const cartElem = document.querySelector(select.containerOf.cart);
       thisApp.cart = new Cart(cartElem);
     },
   };
-
+  
   app.init();
   app.initCart();
 
