@@ -383,7 +383,7 @@
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
       thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
-      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     }
   
@@ -581,7 +581,7 @@
       const thisApp = this;
   
       thisApp.data = {};
-      const url = settings.db.url + '/' + settings.db.orders;
+      const url = settings.db.url + '/' + settings.db.products;
       fetch(url)
         .then(function (rawResponse) {
           return rawResponse.json();
