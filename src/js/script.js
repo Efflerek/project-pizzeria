@@ -596,8 +596,8 @@
         .catch(function (error) {
           console.error('Error:', error);
         });
-    }
-  
+    },
+
     init: function () {
       const thisApp = this;
 

@@ -536,7 +536,7 @@
         bubbles: true,
         detail: {
           cartProduct: thisCartProduct,
-        },
+        }
       });
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
@@ -554,7 +554,7 @@
       console.log('remove', thisCartProduct);
     }
 
-    getData() {
+    getData(){
       const thisCartProduct = this;
 
       const thisCartproductSummary = {
@@ -570,41 +570,38 @@
   }
 
   const app = {
-    initMenu: function () {
+    initMenu: function(){
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
-      for (let productData in thisApp.data.products) {
-        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
-      }
       
+
+      for(let productData in thisApp.data.products){
+        new Product(productData, thisApp.data.products[productData]);
+      }
     },
-
-    initData: function () {
+  
+    initData: function(){
       const thisApp = this;
-
+    
       thisApp.data = {};
       const url = settings.db.url + '/' + settings.db.products;
       fetch(url)
-      .then(function(rawResponse){
-        return rawResponse.json();
-      })
-      .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-
-        /* save parsedResponse as thisApp.data.products */
-        thisApp.data.products = parsedResponse;
-        /* execute initMenu method */
-        thisApp.initMenu();
-      });
-
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
-    },
-
-    initCart: function () {
-      const thisApp = this;
-      const cartElem = document.querySelector(select.containerOf.cart);
-      thisApp.cart = new Cart(cartElem);
-    },
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
+    
+          /* save parsedResponse as thisApp.data.products */
+          thisApp.data.products = parsedResponse;
+          /* execute initMenu method */
+          thisApp.initMenu();
+        })
+        .catch(function(error){
+          console.error('Error:', error);
+        });
+    
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
+    }
 
     init: function(){
       const thisApp = this;
@@ -625,3 +622,4 @@
   app.initCart();
   
 }
+
