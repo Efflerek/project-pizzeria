@@ -79,4 +79,4 @@ class CartProduct {
     }
   }
 
-export default ProductClass;
+export default ProductCart;
