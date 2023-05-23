@@ -114,3 +114,4 @@ initBooking: function() {
 app.init();
 app.initCart();
 app.initPages();
+app.initBooking();
