@@ -88,6 +88,7 @@ const app = {
     const thisApp = this;
 
     thisApp.initData();
+    
   },
 
   initCart: function () {
@@ -101,8 +102,15 @@ const app = {
       thisApp.cart.add(event.detail.product);
     });
   },
-};
 
+initBooking: function() {
+  const thisApp = this;
+
+  thisApp.booking = document.querySelector(select.containerOf.booking);
+
+  new Booking(thisApp.booking);
+},
+};
 app.init();
 app.initCart();
 app.initPages();
