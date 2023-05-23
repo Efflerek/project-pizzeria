@@ -1,20 +1,22 @@
 import {templates, select, settings, classNames} from '../settings.js';
+import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
 
+export class Booking{
 class Booking {
-  constructor(reserveTable) {
+  constructor(element) {
     const thisBooking = this;
     thisBooking.render(reserveTable);
     thisBooking.initWidgets();
 
   }
-  render(reserveTable) {
+  render(element) {
     const thisBooking = this;
     const generateBookingHTML = templates.bookingWidget();
     thisBooking.dom = {};
-    thisBooking.dom.wrapper = reserveTable;
+    thisBooking.dom.wrapper = element;
     thisBooking.dom.wrapper.innerHTML = generateBookingHTML;
     thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
@@ -38,6 +40,7 @@ class Booking {
       thisBooking.sendBooking();
     });
   }
+}
 }
 
 export default Booking;
