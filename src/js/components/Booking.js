@@ -14,25 +14,27 @@ export default class Booking {
 
   getData() {
     const thisBooking = this;
-    const startDateParam = settings.db.dataStartParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate)
-    const endDateParam = settings.db.dataEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.maxDate)
-    
+    const startDateParam = settings.db.dataStartParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate),
+    const endDateParam = settings.db.dataEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.maxDate),
+
     const params = {
       booking: [
         startDateParam,
         endDateParam,
       ],
       eventsCurrent: [
+        settings.db.notRepeatParam,
         startDateParam,
         endDateParam,
       ],
       eventsRepeat: [
+        settings.db.repeatParam
         endDateParam,
       ],
     };
 
     const urls = {
-      
+
       booking:
         settings.db.url +
         '/' +
@@ -54,6 +56,27 @@ export default class Booking {
         '?' +
         params.eventsRepeat.join('&'),
     };
+
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function (allResponses) {
+        const bookingResponse = allResponses[0];
+        const eventsCurrentResponse = allResponses[1];
+        const bookingResponse = allResponses[2];
+        return Promise.all([
+          bookingResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function ([bookings, eventsCurrent, eventsRepeat]) {
+        console.log(bookings);
+        console.log(eventsCurrent);
+        console.log(eventsRepeat);
+      });
   }
 
   render(element) {
