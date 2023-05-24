@@ -12,10 +12,11 @@ export default class Booking {
     thisBooking.getData();
   }
 
-  getData() {
+getData(){
     const thisBooking = this;
-    const startDateParam = settings.db.dataStartParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate),
-    const endDateParam = settings.db.dataEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.maxDate),
+
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
 
     const params = {
       booking: [
@@ -28,33 +29,21 @@ export default class Booking {
         endDateParam,
       ],
       eventsRepeat: [
-        settings.db.repeatParam
+        settings.db.repeatParam,
         endDateParam,
       ],
     };
 
     const urls = {
-
-      booking:
-        settings.db.url +
-        '/' +
-        settings.db.booking +
-        '?' +
-        params.booking.join('&'),
-
-      eventsCurrent:
-        settings.db.url +
-        '/' +
-        settings.db.event +
-        '?' +
-        params.eventsCurrent.join('&'),
-
-      eventsRepeat:
-        settings.db.url +
-        '/' +
-        settings.db.event +
-        '?' +
-        params.eventsRepeat.join('&'),
+      booking:       settings.db.url + '/' +
+                     settings.db.bookings + '?' + 
+                     params.booking.join('&'),
+      eventsCurrent: settings.db.url + '/' + 
+                     settings.db.events + '?' + 
+                     params.eventsCurrent.join('&'),
+      eventsRepeat:  settings.db.url + '/' + 
+                     settings.db.events + '?' + 
+                     params.eventsRepeat.join('&'),
     };
 
     Promise.all([
@@ -62,20 +51,18 @@ export default class Booking {
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
     ])
-      .then(function (allResponses) {
-        const bookingResponse = allResponses[0];
+      .then(function(allResponses){
+        const bookingsResponse = allResponses[0];
         const eventsCurrentResponse = allResponses[1];
-        const bookingResponse = allResponses[2];
+        const eventsRepeatResponse = allResponses[2];
         return Promise.all([
-          bookingResponse.json(),
+          bookingsResponse.json(),
           eventsCurrentResponse.json(),
           eventsRepeatResponse.json(),
         ]);
       })
-      .then(function ([bookings, eventsCurrent, eventsRepeat]) {
-        console.log(bookings);
-        console.log(eventsCurrent);
-        console.log(eventsRepeat);
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
 
