@@ -14,11 +14,21 @@ export default class Booking {
 
   getData() {
     const thisBooking = this;
-
+    const startDateParam = settings.db.dataStartParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate)
+    const endDateParam = settings.db.dataEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.maxDate)
+    
     const params = {
-      booking: [],
-      eventsCurrent: [],
-      eventsRepeat: [],
+      booking: [
+        startDateParam,
+        endDateParam,
+      ],
+      eventsCurrent: [
+        startDateParam,
+        endDateParam,
+      ],
+      eventsRepeat: [
+        endDateParam,
+      ],
     };
 
     const urls = {
