@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pizzeria</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="./vendor/range-slider.min.css" />
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pizzeria</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
+    rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="./vendor/range-slider.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
 <body>
   <header class="header">
     <div class="container">
@@ -66,12 +69,12 @@
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
-      </section>
-      <section id="booking">
-        <div class="booking-wrapper container"></div>
-      </section>
-      </div>
-      <script id="template-home" type="text/x-handlebars-template">
+    </section>
+    <section id="booking">
+      <div class="booking-wrapper container"></div>
+    </section>
+  </div>
+  <script id="template-home" type="text/x-handlebars-template">
         <div class='home-header'>
           <div class='row-wrapper'>
             <a href='#order' class='home-btn'>
@@ -128,7 +131,7 @@
       
           <div class='carousel-box'>
             <div class='carousel-box__image'>
-              <img src='images/home/pizza-3.jpg' alt='eating out' />
+              <img src='images/home/pizza-3.jpg' alt='eating out'/>
             </div>
             <div class='carousel-box__info'>
               <h1>Good snacks!</h1>
@@ -141,7 +144,7 @@
       
           <div class='carousel-box'>
             <div class='carousel-box__image'>
-              <img src='images/home/pizza-3.jpg' alt='eating out' />
+              <img src='images/home/pizza-3.jpg' alt='eating out'/>
             </div>
             <div class='carousel-box__info'>
               <h1>Delicious food!</h1>
@@ -163,7 +166,7 @@
               <i class="fas fa-share-alt"></i>
             </div>
           </div>
-          <img src="images/home/pizza-4.jpg" alt="starters" />
+          <img src="images/home/pizza-4.jpg" alt="starters"/>
         </div>
         <div class="gallery__image">
           <div class="gallery__image__overlay">
@@ -172,7 +175,7 @@
               <i class="fas fa-share-alt"></i>
             </div>
           </div>
-          <img src="images/home/pizza-5.jpg" alt="vegetable dish" />
+          <img src="images/home/pizza-5.jpg" alt="vegetable dish"/>
         </div>
         <div class="gallery__image">
           <div class="gallery__image__overlay">
@@ -181,7 +184,7 @@
               <i class="fas fa-share-alt"></i>
             </div>
           </div>
-          <img src="images/home/pizza-6.jpg" alt="pizza" />
+          <img src="images/home/pizza-6.jpg" alt="pizza"/>
         </div>
         <div class="gallery__image">
           <div class="gallery__image__overlay">
@@ -190,7 +193,7 @@
               <i class="fas fa-share-alt"></i>
             </div>
           </div>
-          <img src="images/home/pizza-7.jpg" alt="open sign" />
+          <img src="images/home/pizza-7.jpg" alt="open sign"/>
         </div>
         <div class='gallery__image'>
           <div class='gallery__image__overlay'>
@@ -199,7 +202,7 @@
               <i class='fas fa-share-alt'></i>
             </div>
           </div>
-          <img src='images/home/pizza-8.jpg' alt='pizza dough' />
+          <img src='images/home/pizza-8.jpg' alt='pizza dough'/>
         </div>
         <div class='gallery__image'>
           <div class='gallery__image__overlay'>
@@ -208,7 +211,7 @@
               <i class='fas fa-share-alt'></i>
             </div>
           </div>
-          <img src='images/home/pizza-9.jpg' alt='shop window' />
+          <img src='images/home/pizza-9.jpg' alt='shop window'/>
         </div>
       </div>
       <footer class='gallery-link'>
@@ -216,17 +219,15 @@
       </footer>
     </script>
 
-    <script id="template-cart-product" type="text/x-handlebars-template">
+  <script id="template-cart-product" type="text/x-handlebars-template">
       <li>
         <div class='widget-amount'>
           <!-- widget-amount -->
           <a class='btn-quantity btn-quantity--lt' href='#less'><i
               class='fas fa-minus'
             ></i></a>
-          <input class='amount' type='text' value='{{amount}}' />
-          <a class='btn-quantity btn-quantity--lt' href='#more'><i
-              class='fas fa-plus'
-            ></i></a>
+          <input class='amount' type='text' value='{{amount}}'/>
+          <a class='btn-quantity btn-quantity--lt' href='#more'><i class='fas fa-plus'></i></a>
         </div>
         <div class='cart__product'>
           <div class='cart__product-header'>
@@ -249,7 +250,7 @@
       </li>
     </script>
 
-    <script id="template-menu-product" type="text/x-handlebars-template">
+  <script id="template-menu-product" type="text/x-handlebars-template">
       <article class="product"> <!-- product -->
 
           <header class="product__header">
@@ -327,7 +328,7 @@
 
       </article> <!-- .product -->
     </script>
-    <script id="template-booking-widget" type="text/x-handlebars-template">
+  <script id="template-booking-widget" type="text/x-handlebars-template">
       <div class='booking-widget'>
         <h2 class='page__title no-spacing'>Book a table</h2>
         <form class='booking-form'>
@@ -415,10 +416,11 @@
         </form>
       </div>
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="./vendor/range-slider.min.js"></script>
-    <script src="js/app.js" type="module"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="./vendor/range-slider.min.js"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+
 </html>
