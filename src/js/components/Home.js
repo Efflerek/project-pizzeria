@@ -1,40 +1,26 @@
-import { templates, select } from '../settings.js';
-import utils from '../utils.js';
+import { templates } from '../settings.js';
 
 class Home {
-  constructor(element, app){
+  constructor(element) {
     const thisHome = this;
 
-    thisHome.app = app;
-    thisHome.render();
-    thisHome.initActions();
+    thisHome.render(element);
   }
-
 
   render(element) {
     const thisHome = this;
 
-    const generatedHTML = templates.homeWidget();
-    thisHome.element = utils.createDOMFromHTML(generatedHTML);
-    const homeContainer = document.querySelector(select.containerOf.home);
-    homeContainer.appendChild(thisHome.element).innerHTML;
+    /* generate HTML based on template */
+    const generatedHTML = templates.homePage(element);
 
+    // create empty object thisHome.dom
     thisHome.dom = {};
+
+    // add new property to thisHome.dom object
     thisHome.dom.wrapper = element;
-    
-    thisHome.dom.homeHeader = document.querySelector(select.home.homeHeader);
-  }
-  initActions() {
-    const thisHome = this;
-    thisHome.dom.homeHeader.addEventListener('click', function(event){
-      event.preventDefault();
-      let pageId = event.target.offsetParent.getAttribute(select.home.dataId);
-      if (pageId) {
-        thisHome.app.activatePage(pageId);
-      }
-    });
-  }
 
+    // add innerHTML of the wrapper using generatedHTML
+    thisHome.dom.wrapper.innerHTML = generatedHTML;
+  }
 }
-
 export default Home;

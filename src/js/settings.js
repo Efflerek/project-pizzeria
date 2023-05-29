@@ -3,14 +3,14 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
-    homeWidget: '#template-home-widget',
+    homePage: '#template-home',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
-    home: '.home-wrapper',
+    homePage: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -27,7 +27,7 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount', 
+      input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
@@ -45,17 +45,12 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
-    floor: '.floor-plan',
-    duration: '[name="hours"]',
-    people: '[name="people"]',
-    submit: '.booking-form [type="submit"]',
-    address: '[name="address"]',
-    phone: '[name="phone"]',
-    starters: 'input[type="checkbox"]',
-  },
-  home: {
-    homeHeader: '.navigation',
-    dataId: 'id-data',
+    allTables: '.floor-plan',
+    starters: '[name= "starter"]',
+    phone: '.order-confirmation [name="phone"]',
+    address: '.order-confirmation [name= "address"]',
+    tableSelected: '.table.selected',
+    form: '.booking-form',
   },
   nav: {
     links: '.main-nav a',
@@ -64,7 +59,8 @@ export const select = {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
     totalNumber: `.cart__total-number`,
-    totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+    totalPrice:
+      '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
     subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
     deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
     form: '.cart__order',
@@ -78,8 +74,12 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  home: {
+    links: '.home-btn',
+    carousel: '.carousel-wrapper',
+  },
 };
-  
+
 export const classNames = {
   menuProduct: {
     wrapperActive: 'active',
@@ -98,15 +98,15 @@ export const classNames = {
   },
   pages: {
     active: 'active',
-  }
+  },
 };
-  
+
 export const settings = {
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
     defaultMax: 9,
-  }, 
+  },
   cart: {
     defaultDeliveryFee: 20,
   },
@@ -121,21 +121,31 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     products: 'products',
     orders: 'orders',
-    bookings: 'bookings',
-    events: 'events',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
+    product: 'product',
+    order: 'order',
+    booking: 'bookings',
+    event: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
   },
 };
-  
+
 export const templates = {
-  menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-  cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
-  homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
+  menuProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.menuProduct).innerHTML
+  ),
+  cartProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.cartProduct).innerHTML
+  ),
+  bookingWidget: Handlebars.compile(
+    document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
+  homePage: Handlebars.compile(
+    document.querySelector(select.templateOf.homePage).innerHTML
+  ),
 };

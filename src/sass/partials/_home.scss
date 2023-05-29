@@ -1,87 +1,197 @@
-// * Navigation
+/* booking-wrapper styles*/
+a {
+  text-decoration: none;
+}
 
-.navigation img {
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: ($base-size / 2);
+}
+
+h3 {
+  font-family: $font-header;
+  font-weight: $font-semibold;
+  font-size: 25px;
+}
+
+.box {
+  width: 300px;
+  height: 120px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius;
+  position: relative;
+}
+
+.box img {
+  width: 300px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: $radius;
+}
+
+.box p {
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+.box h3 {
+  margin: 36px 0 0 0;
+}
+
+.box:hover h3 {
+  transform: translateY(-20%);
+  transition: $transition;
+  margin: 0 0 10px 0;
+}
+
+.box:hover p {
+  transform: translateY(-20%);
+  transition: $transition;
+  opacity: 100%;
+  margin: 0;
+}
+
+.order-book {
+  position: absolute;
+  display: inline-block;
+  color: $color-light;
+}
+
+.bottom-box {
+  width: 606px;
+  height: 120px;
+  border-radius: $radius;
+  background-color: $color-main;
+  color: $color-light;
+  text-align: center;
+  flex: 100%;
+  margin: ($base-size / 2) 0;
+  padding: ($base-size * 2) 0;
+}
+
+.bottom-box h3 {
+  margin: auto;
+}
+
+.open-time {
+  margin: 0;
+  font-weight: $font-semibold;
+}
+
+/* Carousel */
+
+.carousel-wrapper {
+  padding: 20px 0;
+}
+
+.carousel-box{
+  width: 100%;
+  height: 250px;
+  border-radius: 4px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+
+  &__image {
+    flex: 50%;
+  }
+
+  &__info {
+    flex: 50%;
+  }
+
+  &__image img {
     width: 100%;
-    height: 120px;
+    height: 100%;
     object-fit: cover;
+    border-radius: $radius;
   }
-  
-  .opening-hour {
-    width: 100%;
-    height: 120px;
-    background-color: rgb(253, 127, 118);
-  }
-  
-  .row {
-    --bs-gutter-x: 0.3rem;
-    --bs-gutter-y: 0;
-  }
-  
-  .card-body {
-    color: white;
-  }
-  
-  .card-body-dynamic {
-    p {
-      margin: auto;
-  
-      &.active {
-        font-size: 0px;
-      }
-    }
-  }
-  
-  .card-body-dynamic:hover {
-  
-    cursor: pointer;
-  
-    p {
-      font-size: 12px;
-      margin: auto;
-        
-      &.transparent {
-        opacity: 0;
-      }
-    }
-  }
-   
-  .card-body h3 {   
-    font-family: "Oswald", sans-serif;
-    font-size: 26px;
-    font-weight: 500;
-  }
-  
-  .card-body h4 {
-    font-family: "Lato", sans-serif;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-    
-  // * Gallery
-  
-  .gallery img {
-    width: 100%;
+}
+
+/* Gallery */
+.gallery {
+  margin: 100px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  &__image {
     height: 200px;
-    object-fit: cover;
-  }
-  
-  .gallery .card {
-    .icons {
-      color: white;
-      font-size: 18px;
+    flex: 30%;
+    position: relative;
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #33333399;
+      opacity: 0;
+      transition: all 0.3s ease-in;
+
+      &__icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        z-index: 1;
+      }
+
+      &__icons i {
+        margin: 5px;
+        font-size: 0px;
+        transition: all 0.3s ease-in;
+      }
+
+      &__icons i:hover {
+        color: $color-danger;
+        cursor: pointer;
+      }
+    }
+
+    &__overlay:hover {
+      opacity: 1;
+    }
+
+    &__overlay:hover i {
+      font-size: 30px;
     }
   }
-  
-  .gallery .card:hover {
-  
-    cursor: pointer;
-      
-    .icons {
-      color: rgb(253, 127, 118);
-      font-size: 24px;
-    }
-  
-    img {
-      opacity: 0.6;
-    }
+
+  &__image img {
+    width: 100%;
+    height: 100%;
+    border-radius: $radius;
   }
+
+  &__image i {
+    color: $color-light;
+    font-weight: 900;
+  }
+}
+
+.gallery-link a {
+
+  color: $color-main;
+}
+
+.gallery-link a:hover {
+  cursor: pointer;
+  color: $color-dark;
+}
