@@ -174,28 +174,28 @@ class Booking {
     
     thisBooking.dom.floor.addEventListener('click', function(event){
       event.preventDefault();
-
+  
       if(event.target.classList.contains('table')){
         
         if(!event.target.classList.contains(classNames.booking.tableBooked)){
-
+  
           for(let table of thisBooking.dom.tables){
-            if (table.classList.contains(classNames.booking.tableSelected) &&
-            table !== event.target){
+            if (table.classList.contains(classNames.booking.tableSelected) && table !== event.target){
               table.classList.remove(classNames.booking.tableSelected);
             }
-            if(event.target.classList.contains(classNames.booking.tableSelected)){
-              event.target.classList.remove(classNames.booking.tableSelected);
-            } else {
-              event.target.classList.add(classNames.booking.tableSelected);
-            } 
           }
+  
+          if(event.target.classList.contains(classNames.booking.tableSelected)){
+            event.target.classList.remove(classNames.booking.tableSelected);
+          } else {
+            event.target.classList.add(classNames.booking.tableSelected);
+          } 
         } else {
-          alert('this table is already booked');
+          alert('This table is already booked');
         } 
       }
     });
-  }
+  } //CODE FIXED - 30.05.2023:  if (event.target.classList.contains(classNames.booking.tableSelected))placed outside the loop after removing the selected class from other tables.
 
   initWidgets(){
     const thisBooking = this;
@@ -239,9 +239,9 @@ class Booking {
     const payload = {
       date: thisBooking.date,
       hour: utils.numberToHour(thisBooking.hour),
-      table: parseInt(thisBooking.tableId),
-      duration: thisBooking.hoursAmount.value,
-      ppl: thisBooking.peopleAmount.value,
+      table: parseInt(thisBooking.selectedTable), 
+      duration: parseInt(thisBooking.hoursAmount.value), //CODE ADDED 30.05.2023
+      ppl: parseInt(thisBooking.peopleAmount.value), //CODE ADDED 30.05.2023
       starters: [],
       phone: thisBooking.dom.phone.value,
       adress: thisBooking.dom.address.value,
