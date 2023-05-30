@@ -233,33 +233,26 @@ class Booking {
 
   sendBooking(){
     const thisBooking = this;
-
+  
     const url = settings.db.url + '/' + settings.db.bookings;
-    
+  
     const payload = {
-      sendBooking(){
-        const thisBooking = this;
-      
-        const url = settings.db.url + '/' + settings.db.bookings;
-        
-        const payload = {
-          date: thisBooking.date,
-          hour: utils.numberToHour(thisBooking.hour),
-          table: parseInt(thisBooking.tableId), // Replace 'thisBooking.tableId' with the actual table ID
-          duration: thisBooking.hoursAmount.value,
-          ppl: thisBooking.peopleAmount.value,
-          starters: [],
-          phone: thisBooking.dom.phone.value,
-          address: thisBooking.dom.address.value, // Corrected property name
-        };
-    }
-
+      date: thisBooking.date,
+      hour: utils.numberToHour(thisBooking.hour),
+      table: parseInt(thisBooking.tableId), // Replace 'thisBooking.tableId' with the actual table ID
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
+      starters: [],
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value, // Corrected property name
+    };
+  
     for (let starter of thisBooking.dom.starters) {
       if (starter.checked) {
         payload.starters.push(starter.value);
       }
     }
-
+  
   
     const options = {
       method: 'POST',
@@ -268,20 +261,19 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
-      
+  
     fetch(url, options)
       .then(function (response) {
         return response.json();
       }).then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
         thisBooking.makeBooked(
-          parsedResponse.date, 
-          parsedResponse.hour, 
+          parsedResponse.date,
+          parsedResponse.hour,
           parsedResponse.duration,
           parsedResponse.table
         );
         thisBooking.updateDOM();
       });
-  }
   }
 export default Booking;
