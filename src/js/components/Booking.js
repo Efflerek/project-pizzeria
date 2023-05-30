@@ -254,11 +254,12 @@ class Booking {
         };
     }
 
-    for(let starter of thisBooking.dom.starters) {
-      if(starter.checked){
+    for (let starter of thisBooking.dom.starters) {
+      if (starter.checked) {
         payload.starters.push(starter.value);
       }
     }
+
   
     const options = {
       method: 'POST',
