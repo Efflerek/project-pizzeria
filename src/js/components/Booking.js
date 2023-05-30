@@ -252,7 +252,7 @@ class Booking {
           phone: thisBooking.dom.phone.value,
           address: thisBooking.dom.address.value, // Corrected property name
         };
-    };
+    }
 
     for(let starter of thisBooking.dom.starters) {
       if(starter.checked){
