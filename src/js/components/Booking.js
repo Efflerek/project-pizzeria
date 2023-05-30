@@ -169,34 +169,33 @@ class Booking {
     thisBooking.dom.starters = element.querySelectorAll(select.booking.starters);
   }
 
-  initTables(){
+  initTables() {
     const thisBooking = this;
-    
-    thisBooking.dom.floor.addEventListener('click', function(event){
+  
+    thisBooking.dom.floor.addEventListener('click', function (event) {
       event.preventDefault();
   
-      if(event.target.classList.contains('table')){
-        
-        if(!event.target.classList.contains(classNames.booking.tableBooked)){
-  
-          for(let table of thisBooking.dom.tables){
-            if (table.classList.contains(classNames.booking.tableSelected) && table !== event.target){
+      if (event.target.classList.contains('table')) {
+        if (!event.target.classList.contains(classNames.booking.tableBooked)) {
+          for (let table of thisBooking.dom.tables) {
+            if (table.classList.contains(classNames.booking.tableSelected) && table !== event.target) {
               table.classList.remove(classNames.booking.tableSelected);
             }
           }
   
-          if(event.target.classList.contains(classNames.booking.tableSelected)){
+          if (event.target.classList.contains(classNames.booking.tableSelected)) {
             event.target.classList.remove(classNames.booking.tableSelected);
+            thisBooking.tableId = null; // Clear the selected table ID
           } else {
             event.target.classList.add(classNames.booking.tableSelected);
-          } 
+            thisBooking.tableId = event.target.getAttribute(settings.booking.tableIdAttribute); // Set the selected table ID
+          }
         } else {
           alert('This table is already booked');
-        } 
+        }
       }
     });
-  } //CODE FIXED - 30.05.2023:  if (event.target.classList.contains(classNames.booking.tableSelected))placed outside the loop after removing the selected class from other tables.
-
+  } //CODE ADDED - 30.05.2023 // eventlistener added -  can update the thisBooking.tableId value whenever a table is selected.
   initWidgets(){
     const thisBooking = this;
         
