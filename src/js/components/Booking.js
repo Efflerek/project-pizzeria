@@ -244,7 +244,7 @@ class Booking {
       ppl: parseInt(thisBooking.peopleAmount.value), //CODE ADDED 30.05.2023
       starters: [],
       phone: thisBooking.dom.phone.value,
-      adress: thisBooking.dom.address.value,
+      address: thisBooking.dom.address.value, // adress changed to address
     };
 
     for(let starter of thisBooking.dom.starters) {
