@@ -259,7 +259,7 @@ class Booking {
         payload.starters.push(starter.value);
       }
     }
-
+  
     const options = {
       method: 'POST',
       headers: {
@@ -282,6 +282,5 @@ class Booking {
         thisBooking.updateDOM();
       });
   }
-
-}
+  }
 export default Booking;
