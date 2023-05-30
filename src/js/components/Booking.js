@@ -237,14 +237,21 @@ class Booking {
     const url = settings.db.url + '/' + settings.db.bookings;
     
     const payload = {
-      date: thisBooking.date,
-      hour: utils.numberToHour(thisBooking.hour),
-      table: parseInt(thisBooking.selectedTable), 
-      duration: parseInt(thisBooking.hoursAmount.value), //CODE ADDED 30.05.2023
-      ppl: parseInt(thisBooking.peopleAmount.value), //CODE ADDED 30.05.2023
-      starters: [],
-      phone: thisBooking.dom.phone.value,
-      address: thisBooking.dom.address.value, // adress changed to address
+      sendBooking(){
+        const thisBooking = this;
+      
+        const url = settings.db.url + '/' + settings.db.bookings;
+        
+        const payload = {
+          date: thisBooking.date,
+          hour: utils.numberToHour(thisBooking.hour),
+          table: parseInt(thisBooking.tableId), // Replace 'thisBooking.tableId' with the actual table ID
+          duration: thisBooking.hoursAmount.value,
+          ppl: thisBooking.peopleAmount.value,
+          starters: [],
+          phone: thisBooking.dom.phone.value,
+          address: thisBooking.dom.address.value, // Corrected property name
+        };
     };
 
     for(let starter of thisBooking.dom.starters) {
